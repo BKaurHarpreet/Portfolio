@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-portfolio
+spec:	 	
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-portfolio
+  template:
+    metadata:
+      labels:
+        app: my-portfolio
+    spec:
+      containers:
+      - name: my-portfolio
+        image: gcr.io/my-portfolio/my-portfolio:1.0.0   # replace with your image
+        ports:
+        - containerPort: 8080
