@@ -44,7 +44,7 @@ env:
   PROJECT_ID: 'my-portfolio-471118' # TODO: update to your Google Cloud project ID
   GAR_LOCATION: 'us-central1' # TODO: update to your region
   GKE_CLUSTER: 'portfolio' # TODO: update to your cluster name
-  GKE_ZONE: 'us-central1-c' # TODO: update to your cluster zone
+  GKE_REGION: 'us-central1' # TODO: update to your cluster zone
   DEPLOYMENT_NAME: 'my-portfolio' # TODO: update to your deployment name
   REPOSITORY: 'my-docker-repo' # TODO: update to your Artifact Registry docker repository name
   IMAGE: 'my-portfolio'
@@ -72,10 +72,10 @@ jobs:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       # Authenticate Docker to Google Cloud Artifact Registry
-      - name: 'Docker Auth'
+      - name: 'Docker Authentication'
         uses: 'docker/login-action@v3' # docker/login-action@v3
         with:
-    	  registry: us-central1-docker.pkg.dev
+          registry: us-central1-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.GCP_SA_KEY }}
 
