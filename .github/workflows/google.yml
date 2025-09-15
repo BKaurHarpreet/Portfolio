@@ -71,6 +71,16 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+          
+      # Get the GKE credentials so we can deploy to the cluster
+      - name: Get GKE credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_REGION }}    # 👈 for regional clusters
+          project_id: ${{ env.PROJECT_ID }}
+
+          
       # Authenticate Docker to Google Cloud Artifact Registry
       - name: 'Docker Authentication'
         uses: 'docker/login-action@v3' # docker/login-action@v3
@@ -79,22 +89,13 @@ jobs:
           username: _json_key
           password: ${{ secrets.GCP_SA_KEY }}
 
-      # Get the GKE credentials so we can deploy to the cluster
-      - name: 'Set up GKE credentials'
-        uses: 'google-github-actions/get-gke-credentials@v2' # google-github-actions/get-gke-credentials@v2
-        with:
-          cluster_name: '${{ env.GKE_CLUSTER }}'
-          location: '${{ env.GKE_ZONE }}'
 
       # Build the Docker image
       - name: 'Build and push Docker container'
         run: |-
-          DOCKER_TAG="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
-
+          DOCKER_TAG="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:latest"
           docker build \
             --tag "${DOCKER_TAG}" \
-            --build-arg GITHUB_SHA="${GITHUB_SHA}" \
-            --build-arg GITHUB_REF="${GITHUB_REF}" \
             .
 
           docker push "${DOCKER_TAG}"
