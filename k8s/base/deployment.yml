@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: my-portfolio
-        image: gcr.io/my-portfolio/my-portfolio:1.0.0   # replace with your image
+        image: image: us-central1-docker.pkg.dev/my-portfolio-471118/my-docker-repo/portfolio:1.0.0 # replace with your image
         ports:
         - containerPort: 8080
