@@ -71,7 +71,7 @@ jobs:
       - name: 'Docker Auth'
         uses: 'docker/login-action@v3' # docker/login-action@v3
         with:
-    	  registry: us-central1-docker.pkg.dev
+          registry: us-central1-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.GCP_SA_KEY }}
 
