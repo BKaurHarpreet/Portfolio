@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Copy all your HTML, CSS, JS files into Nginx's default public folder
-COPY ./web/ /usr/share/nginx/html/
+COPY ./app/ /usr/share/nginx/html/
 
 # Expose port 8080 to the outside world
 EXPOSE 8080
