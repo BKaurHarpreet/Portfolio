@@ -103,7 +103,6 @@ jobs:
       - name: 'Deploy to GKE'
         run: |-
           # replacing the image name in the k8s template
-          ./kustomize edit set image my-app=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:latest
           ./kustomize build k8s/ | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
