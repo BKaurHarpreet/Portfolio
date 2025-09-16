@@ -7,7 +7,7 @@ spec:
   selector:
     app: my-portfolio
   ports:
-    port: 80          #  Cluster-wide entry point
-    targetPort: 8080  # Maps to Pod’s containerPort
-    nodePort: 30036   # Optional: expose outside cluster (for NodePort type)
+    - port: 80          # Cluster-wide entry point
+      targetPort: 8080  # Maps to Pod’s containerPort
+      nodePort: 30036   # Optional, only valid if type=NodePort
 
