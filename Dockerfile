@@ -1,6 +1,12 @@
 # Use the official lightweight Nginx image
 FROM nginx:alpine
 
+# Remove default config shipped with nginx
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy your custom config
+COPY default.conf /etc/nginx/conf.d/
+
 # Remove default nginx files 
 RUN rm -f /usr/share/nginx/html/index.html /usr/share/nginx/html/50x.html
 
