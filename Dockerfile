@@ -1,6 +1,9 @@
 # Use the official lightweight Nginx image
 FROM nginx:alpine
 
+# Remove default nginx files 
+RUN rm -f /usr/share/nginx/html/index.html /usr/share/nginx/html/50x.html
+
 # Copy all your HTML, CSS, JS files into Nginx's default public folder
 COPY ./app/ /usr/share/nginx/html/
 
