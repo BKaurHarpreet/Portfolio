@@ -19,5 +19,7 @@ RUN sed -i 's/listen\s*80;/listen 8080;/g' /etc/nginx/conf.d/default.conf
 # Expose port 8080 to the outside world
 EXPOSE 8080
 
+RUN chmod -R 755 /usr/share/nginx/html
+
 # Start Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
