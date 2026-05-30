@@ -1,1 +1,2 @@
-Use "https://nbviewer.org" to see ipnyb files
+
+This is my portfolio repo that demonstrates the use of kubernetes cluster and dockerfile.
